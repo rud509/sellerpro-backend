@@ -14,8 +14,8 @@ aiohttp==3.9.5
 beautifulsoup4==4.12.3
 lxml==5.2.2
 requests==2.32.3
-pandas==2.2.2
-numpy==1.26.4
+pandas==2.1.2
+numpy==1.24.4
 pytz==2024.1
 python-dateutil==2.9.0
 exponent-server-sdk==2.1.0
