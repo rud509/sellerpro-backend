@@ -17,7 +17,8 @@ async def chat(messages: List[Dict], include_amazon_data: bool = False, session_
     try:
         response = client.messages.create(
             model="claude-sonnet-4-6",
-            max_tokens=8096,
+            max_tokens=800,
+            temperature=0.5,
             system=SYSTEM_PROMPT,
             messages=messages
         )
