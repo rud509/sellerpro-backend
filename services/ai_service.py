@@ -24,3 +24,5 @@ async def chat(messages: List[Dict], include_amazon_data: bool = False, session_
         return response.content[0].text
     except Exception as e:
         return f"Erreur: {str(e)}"
+# Alias pour compatibilité
+chat_with_ai = chat
