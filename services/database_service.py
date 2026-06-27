@@ -208,3 +208,26 @@ async def get_analytics_history(days: int = 30) -> List[Dict]:
               .order("date")
               .execute())
     return result.data
+async def get_chat_history():
+    try:
+        supabase = get_supabase()
+        result = supabase.table("chat_history")\
+            .select("session_id, role, content, created_at")\
+            .order("created_at", desc=True)\
+            .execute()
+        
+        sessions = {}
+        for row in result.data:
+            sid = row["session_id"]
+            if sid not in sessions:
+                sessions[sid] = {
+                    "session_id": sid,
+                    "last_message": row["content"],
+                    "last_message_at": row["created_at"],
+                    "message_count": 0
+                }
+            sessions[sid]["message_count"] += 1
+        
+        return list(sessions.values())
+    except Exception as e:
+        raise Exception(f"Erreur historique: {str(e)}")
