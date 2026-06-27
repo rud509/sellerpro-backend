@@ -25,3 +25,10 @@ async def chat(request: ChatRequest):
         return {"response": response}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+@router.get("/history")
+async def get_history():
+    try:
+        sessions = await get_chat_history()
+        return {"sessions": sessions}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e)
